@@ -1,4 +1,5 @@
-// ...
+package com.example.composetutorial
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -17,11 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.example.composetutorial.Message
-import com.example.composetutorial.R
-import com.example.composetutorial.SampleData
 import com.example.composetutorial.ui.theme.ComposeTutorialTheme
-
 
 
 class MainActivity : ComponentActivity() {
@@ -57,11 +54,9 @@ fun MessageCard(msg: Message) {
         )
         Spacer(modifier = Modifier.width(8.dp))
 
-        // We keep track if the message is expanded or not in this
-        // variable
+        //Nếu isExpander thay đổi thì UI sẽ cập nhật
         var isExpanded by remember { mutableStateOf(false) }
 
-        // We toggle the isExpanded variable when we click on this Column
         Column(modifier = Modifier.clickable { isExpanded = !isExpanded }) {
             Text(
                 text = msg.author,
@@ -78,8 +73,6 @@ fun MessageCard(msg: Message) {
                 Text(
                     text = msg.body,
                     modifier = Modifier.padding(all = 4.dp),
-                    // If the message is expanded, we display all its content
-                    // otherwise we only display the first line
                     maxLines = if (isExpanded) Int.MAX_VALUE else 1,
                     style = MaterialTheme.typography.body2
                 )
